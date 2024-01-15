@@ -7,7 +7,7 @@ import pandas as pd
 ut_time_string, ut_time =[],[]
 header_data,obs_data, obs_data_JD = [],[],[]
 
-PARENT_DIR = os,getcwd()
+PARENT_DIR = os.getcwd()
 
 ##### Read the list of fits files in the directory ######
 fits_list_path = os.path.join(PARENT_DIR, 'fits_list')
