@@ -18,7 +18,7 @@ for f in range(len(filelist)):
         header_data.append(fits.getheader(filelist[f]))
         obs_data.append(header_data[f]["DATE-OBS"])
 
-        ut_time_string.append(obs_data[f].replace('T',' '))                   ## Replace the T string between the date and time if present else comment out the next statement##
+        ut_time_string.append(obs_data[f].replace('T',' '))                   ## Replace the T string between the date and time if present else comment out this statement##
 
         ut_time.append(Time(ut_time_string[f], format='iso', scale='utc'))    ## Convert UT time string to Astropy Time object ##
         
