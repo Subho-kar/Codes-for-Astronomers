@@ -205,56 +205,6 @@ def Stackspectra(Scidat_spec, FWHM):
     return diff_spec, red_spec
  
 
-#def wavelet_filter(red_spec, line_name):
-#    """ Filter the spectra based upon its various scaling components using a mother wavelet function """
-
-#    while True:
-#        filtspec = []
-#        recon = []
-#        print("The available mother wavelet functions are:", pywt.wavelist(family=None, kind='discrete')) 
-#        wavelet_type, a = input("Enter the desired type of mother wavelet function (eg: db6) and decomposition level number (any integer > 0) :").split()
-#        lvl = int(a) 
-#        for i in range(len(red_spec)):
-#            coeff=pywt.wavedec(red_spec[i][:,1],wavelet_type,mode='symmetric', level=lvl, axis=-1)        #Multi-Wavelet filter
-#            for j in range(5, len(coeff)):
-#                coeff[j] = np.zeros_like(coeff[j])
-#            #coeff[-1:-5] = np.zeros_like(coeff[-1:-5])                                                   #Ignore the last two coefficient array
-#            recon=pywt.waverec(coeff,wavelet_type,mode='symmetric', axis=-1)                #Multilevel 1D Inverse Discrete Wavelet Transform
-#            filtspec.append(recon)
-            
-#        for i in range (len(filtspec)):
-#            plt.plot(red_spec[0][:,0],filtspec[i][0:len(filtspec[i])-1] + i , label=f'Data {i+1}')
-#        plt.title(f'{line_name} Filtered spectra')
-#        plt.xlabel('$velocity (km/s)$')
-#        plt.ylabel('Data sets (at 40s interval)')
-#        plt.grid()  
-#        plt.show() 
-#        user_input = input('Are you satisfied with the wavelet transformed spectra? yes/no: ')
-#        if user_input.lower() == 'no':
-#            continue
-#        elif user_input.lower() == 'yes':
-#            break
-#        else:
-#            print('Exiting because of wrong input!!!')  
-#            sys.exit()
-#    return filtspec   
- 
-
-#def wave_pow_spec(filtspec):
-#    """ Wavelet power spectrum calculation """
-#    power_spectrum = []
-#    tot_pow_spec = np.zeros_like(filtspec[0])  # Initialize tot_pow_spec as zeros array
-#    avg_pow_spec = np.zeros_like(filtspec[0])  # Initialize avg_pow_spec as zeros array
-    
-#    for i in range(len(filtspec)):
-#        power_spectrum.append(np.abs(filtspec[i]) ** 2)
-#        tot_pow_spec += power_spectrum[i]
-    
-#    avg_pow_spec = tot_pow_spec / len(filtspec)
-
-#    return avg_pow_spec
-
-
 def main():
   
     PARENT_DIR=os.getcwd()
@@ -298,39 +248,6 @@ def main():
         else:
             print('Exiting because of wrong input!!!')  
             break
-
-#    Scidat_spec, line_name, FWHM = Line_extract(toask="Enter the emission line (in nm) you want to analyse (format: HeI_447):", inpline_name=line_name)
-    #print(FWHM)
-    #diff_spec, red_spec =  Stackspectra(Scidat_spec, FWHM)
-#    diff_spec, red_spec =  Stackspectra(Scidat_spec, FWHM)
-#    print("Close the window before proceeding with wavelet filtering")
-#    print("!!!Save the plots before closing the windows!!!")
-#    for i in range (len(diff_spec)):
-#        plt.plot(Scidat_spec[0].spectral_axis, diff_spec[i] + i * u.Unit('erg s-1 cm-2 AA-1') , label=f'Set {i+1}')
-#    plt.title(f'{line_name} Difference spectra')
-#    plt.xlabel('$\lambda (nm)$')
-#    plt.ylabel('Data sets (at 40s interval)')
-#    plt.legend()
-#    plt.grid()  
-#    plt.show()
-#    for i in range (len(red_spec)):
-#        plt.plot(red_spec[i][:,0], red_spec[i][:,1] + i,'.', label=f'Set {i+1}')
-#    plt.title(f'Windowed difference spectra of {line_name}')
-#    plt.xlabel('$Velocity (km/s)$')
-#    plt.ylabel('Data sets (at 40s interval)')
-#    plt.legend()
-#    plt.grid()  
-#    plt.show()
-#    filt_spec = wavelet_filter(red_spec, line_name)
-#    avg_pow_spec = wave_pow_spec(filt_spec)
-#    #print(avg_pow_spec.ndim)
-#        raise ValueError("avg_pow_spec should be a 2D array")
-#    plt.plot(red_spec[0][:,0], np.log10(avg_pow_spec[0:len(avg_pow_spec)-1]), '-r')
-#    plt.title("Average Wavelet Power Spectrum")
-#    plt.xlabel("Scale (km/s)")
-#    plt.ylabel("log(Power)")
-#    plt.grid()
-#    plt.show()
-#    print('***********Analysis was completed************')
+            
 if __name__ == "__main__":
     main() 
